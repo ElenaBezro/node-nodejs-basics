@@ -10,6 +10,7 @@ const copy = async () => {
   try {
     await mkdir(destinationDirName, { recursive: false });
     const sourceDirContent = await readdir(sourceDirName);
+    // TODO: implement without Promise.all. Loop with for()
     await Promise.all(sourceDirContent.map((fileToCopy) => copyFile(`${sourceDirName}/${fileToCopy}`, `${destinationDirName}/${fileToCopy}`)));
   } catch (e) {
     throw new Error(errMessage);
